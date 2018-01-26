@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>个人主页</title>
+	<link rel="stylesheet" href="jquery.fullPage.css">
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		#menu{
+			width: 60%;
+			height: 50px;
+			position: fixed;
+			top: 0;
+			right: 0;
+			text-align: center;
+			line-height: 50px;
+            color: white;
+            z-index: 999999;
+		}
+		#menu ul{
+			width: 100%;
+			height: 50px;
+			display: flex;
+			justify-content: space-around;
+		}
+		#menu li{
+            width:100px;
+        }
+        #menu li.active{
+            background:#81B2C4;
+        }
+        #menu a{
+            color:#fff;
+            font-size:16px;
+            line-height:50px;
+            text-decoration: none;
+        }
+        .s1 img{
+        	width: 100%;
+        	height: 100%;
+        	display: block;
+        }
+        .s1{
+        	width: 100%;
+        	height: 100%;
+        	opacity: 0.8;
+        	position: relative;
+        }
+        .toptext{
+        	position: absolute;
+        	top: 150px;
+        	left: 0;
+        	width: 100%;
+        	height: 80px;
+        	text-align: center;
+        	line-height: 80px;
+        	color: #0A9676;
+        	font-weight: 800;
+        	font-size: 60px;
+        	transition: all 1s;
+            animation: move1 1.5s ease .5s 1;
+        }
+        .bottomtext{
+        	position: absolute;
+        	top: 300px;
+        	right: 0;
+        	width: 70%;
+        	height: 80px;
+        	text-align: center;
+        	line-height: 80px;
+        	color: #B6BF31;
+        	font-weight: 600;
+        	font-size: 50px;
+        	transition: all 1s;
+            animation: move2 1s ease .5s 1;
+
+        }
+
+        /*bug*/
+        .two-left{
+            width:50%;
+            height:100%;
+            transform:translateX(-1000px);
+            transition:.5s all;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+        .two-right{
+            width:50%;
+            height:100%;
+            transform:translateX(1000px);
+            transition:.5s all;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+        .s2,.s3,.s4{
+        	width: 100%;
+        	height: 100%;
+        	position: relative;
+        }
+        .s2 img{
+        	width: 100%;
+        	height: 100%;
+        	display: block;
+        }
+        .two-left .two-xinxi,.two-right .two-lianxi{
+        	width: 50%;
+        	height: 60%;
+        	margin: 150px auto;
+
+        }
+        .two-xinxi img,.two-lianxi img{
+        	display: block;
+        	width: 100%;
+        	height: 200px;
+
+        }
+        .xinxi1,.lianxi1{
+        	display: block;
+        	margin: 10px 10px;
+        	text-align: center;
+        	line-height: 60px;
+        	height: 60px;
+        	font-size: 30px;
+        	color: white;
+        	text-decoration: none;
+        }
+        h1{
+        	font-size: 16px;
+        	text-align: center;
+        	line-height: 40px;
+        	color: white;
+        	font-weight: 0;
+
+        }
+
+        
+       
+        
+        @keyframes move1{
+            0%{
+               transform: translateY(-500px);
+            }
+            50%{
+               transform: translateY(-250px);
+            }
+            100%{
+               transform: translateY(0px);
+            }
+        }
+        @keyframes move2{
+            0%{
+               transform: translateY(500px);
+            }
+            50%{
+               transform: translateY(250px);
+            }
+            100%{
+               transform: translateY(0);
+            }
+        }
+        .s3 img{
+            width: 100%;
+            height: 100%;
+            /*opacity: 0.9;*/
+            position: relative;
+        }
+         .s3-middle{
+            width: 1170px;
+            height: 100%;
+            /*margin: 0 auto;*/
+            /*background: black;*/
+            z-index: 999;
+            position: absolute;
+            top: 0;
+            left: 98px;
+        }
+        .img1{
+            transform-origin: top left;
+            transform: rotate3d(0, 0, 1, 60deg);
+            position: absolute;
+            top: 70%;
+            left: 10%;
+            width: 10%;
+            animation: hinge 2s ease infinite;
+        }
+        @keyframes hinge{
+            0%{
+                transform-origin: top left;
+                animation-timing-function: ease-in-out;
+            }
+            20%,60%{
+                transform: rotate3d(0, 0, 1, 80deg);
+                transform-origin: top left;
+                animation-timing-function: ease-in-out;
+            }
+            40%,80%{
+                transform: rotate3d(0, 0, 1, 60deg);
+                transform-origin: top left;
+                animation-timing-function: ease-in-out;
+            }
+            100%{
+                transform: rotate3d(0, 0, 1, 80deg);
+                transform-origin: top left;
+                animation-timing-function: ease-in-out;
+            }
+        }
+        .img2{
+            width: 541px;
+            position: absolute;
+            right: 0%;
+            bottom: 0;
+            opacity: .5;
+            animation: img2 .5s ease;
+        }
+        @keyframes img2{
+            0%{
+                bottom: -20%;
+            }
+            100%{
+                bottom: 0;
+            }
+        }
+        .img2 img{
+            width: 100%;
+            display: block;
+        }
+        .img3{
+            opacity: 0;
+            width: 309px;
+            position: absolute;
+            right: 1%;
+            bottom: 20%;
+            animation: img3 1s ease forwards;
+        }
+        @keyframes img3{
+            0%{
+                width: 200px;
+                opacity: 0;
+            }
+            100%{
+                width: 309px;
+                bottom: 30%;
+                right: 15%;
+                opacity: 1;
+            }
+        }
+        .text-box{
+            text-align: left;
+            position: absolute;
+            top: 20%;
+            left: 5%;
+            color: #000000;
+        }
+        .text-box .text-box1:nth-child(1) {
+            opacity: 0;
+            -webkit-animation: bounceInLeft 2s linear forwards;
+        }
+        .text-box .text-box1:nth-child(2) {
+            opacity: 0;
+            -webkit-animation: bounceInRight 2s linear forwards;
+        }
+         .text-box .text-box1:nth-child(3) {
+            opacity: 0;
+            -webkit-animation: bounceInDown 2s linear forwards;
+        }
+        .text-box .text-box1{
+            margin-bottom: 20px;
+            overflow: hidden;
+            zoom: 1;
+            margin-top: 15px;
+        }
+        .text-box1:first-child{
+            margin-top: 0;
+        }
+        @keyframes bounceInLeft{
+            0%,60%,75%,90%,100%{
+                animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            }
+            0%{
+                    opacity: 0;
+                        transform: translate3d(-3000px, 0, 0);
+            }
+            60%{
+                opacity: 1;
+                    transform: translate3d(25px, 0, 0);
+            }
+            75%{
+                transform: translate3d(-10px, 0, 0);
+            }
+            90%{
+                    transform: translate3d(5px, 0, 0);
+            }
+            100%{
+                    opacity: 1;
+                        transform: none;
+            }
+        }
+        @keyframes bounceInRight{
+            0%,60%,75%,90%,100%{
+                    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            }
+            0%{
+                    opacity: 0;
+                    transform: translate3d(3000px, 0, 0);
+            }
+            60%{
+                opacity: 1;
+                transform: translate3d(-25px, 0, 0);
+            }
+            75%{
+                transform: translate3d(10px, 0, 0);
+            }
+            90%{
+                transform: translate3d(-5px, 0, 0);
+            }
+            100%{
+                    opacity: 1;
+                    transform: none;
+            }
+        }
+        @keyframes bounceInDown{
+            0%,60%,75%,90%,100%{
+                   animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            }
+            0%{
+                    opacity: 0;
+                    transform: translate3d(0, -3000px, 0);
+            }
+            60%{
+                opacity: 1;
+                transform: translate3d(0, 25px, 0);
+            }
+            75%{
+                    transform: translate3d(0, -10px, 0);
+            }
+            90%{
+                    transform: translate3d(0, 5px, 0);
+            }
+            100%{
+                    opacity: 1;
+                    transform: none;
+            }
+        }
+        .text-left{
+            display: table-cell;
+            vertical-align: top;
+            padding-right: 10px;
+        }
+        .text-left a{
+            display: block;
+            width: 40px;
+            height: 40px;
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .text-left a img{
+            display: block;
+            width: 100%;
+            vertical-align: middle;
+        }
+        .text-right{
+            display: table-cell;
+            vertical-align: top;
+            width: 10000px;
+            overflow: hidden;
+            zoom: 1;
+        }
+        .text-top{
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 18px;
+            font-family: inherit;
+            font-weight: 500;
+            line-height: 1.1;
+            color: inherit;
+        }
+        .text-right p{
+            font-size: 14px;
+            color: #000;
+            font-family: microsoft yahei, sans-serif;
+                margin: 0 0 10px;
+        }
+        /*第四屏*/
+        .s4{
+            background: url('img/s4.jpg') center center no-repeat;
+        }
+        /*.scene{
+            perspective: 2000px;
+            transform-style: preserve-3d;
+            width: 800px;
+            height: 600px;
+            position: absolute;
+            top: 25px;
+            left: 283px;
+            background: red;
+           
+        }*/
+        .scene ul{
+            padding: 0;
+            list-style: none;
+            width: 300px;
+            height: 300px;
+            margin:250px 150px;
+            /*background: #cccccc;*/
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 1s;
+            /*transform-origin: center center -173px;*/
+            transform-origin: center center -280px;
+
+        }
+        .scene ul li{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left:0;
+            top:0;
+            font-size: 30px;
+            text-align: center;
+            line-height: 200px;
+           
+            transform-origin: center center -180px;
+
+        }
+        .scene ul li:nth-child(1){
+            background: #f33;
+            
+            transform: rotateY(60deg);
+        }
+        .scene ul li:nth-child(2){
+            background: #33f;
+            
+            transform: rotateY(120deg);
+
+        }
+        .scene ul li:nth-child(3){
+            background: #3f3;
+            
+            transform: rotateY(180deg);
+
+        }
+        .scene ul li:nth-child(4){
+            background: #ff3;
+           
+            transform: rotateY(240deg);
+
+        }
+        .scene ul li:nth-child(5){
+             background: #3ff;
+            
+            transform: rotateY(300deg);
+
+        }
+        .scene ul li:nth-child(6){
+            background: #f3f;
+           
+            transform: rotateY(360deg);
+
+        }
+        .next,.prev{
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            bottom:30px;
+            border:1px solid red;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .next{
+            right:100px;
+        }
+        .prev{
+            left:100px;
+        }
+
+	</style>
+</head>
+<body>
+<!-- 全屏 开始-->
+<div id="container">
+	<!-- 导航点 开始-->
+    <div id="menu">
+        <ul>
+            <li data-menuanchor="p1" class="active"><a href="#p1">首页</a></li>
+            <li data-menuanchor="p2"><a href="#p2">基本资料</a></li>
+            <li data-menuanchor="p3"><a href="#p3">专业技能</a></li>
+            <li data-menuanchor="p4"><a href="#p4">项目经验</a></li>
+            <li data-menuanchor="p5"><a href="#p5">自我评价</a></li>
+        </ul>
+    </div>
+	<!-- 导航点 结束 -->
+
+    
+    <!-- 分屏开始 -->
+    <div class="section">
+    	<div class="s1">
+    		<img src="img/s11.jpg" alt="">
+    		<div class="toptext"> 前 端 工 程 师</div>
+    		<div class="bottomtext"> 个 人 主 页</div>
+    	</div>
+    </div>
+    
+    <div class="section">
+    	<div class="s2">
+    	    <img src="img/22.jpg" alt="">
+            <div class="two-left">
+            	<div class="two-xinxi">
+            		<a href="">
+            		    <img src="img/book.png" alt="">
+                    </a>
+                    <a href="" class="xinxi1">基本信息</a>
+                    <h1>姓名：刘静  女<br>年龄：24</h1>
+            	</div>
+            </div>
+            <div class="two-right">
+            	<div class="two-lianxi">
+            		<a href="">
+            		    <img src="img/hat.png" alt="">
+                    </a>
+                    <a href="" class="lianxi1">联系方式</a>
+                    <h1>邮箱：651400698@qq.com<br>电话：18362392403</h1>
+            	</div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="section">
+        <div class="s3">
+            <img src="img/s2.jpg" alt="">
+            <div class="s3-middle">
+                <div class="img1">
+                    <img src="img/s31.png" alt="">
+                </div>
+
+                <div class="img2">
+                    <img src="img/s34.png" alt="">
+                </div>
+
+                <div class="img3">
+                    <img src="img/2(3).png" alt="">
+                </div>
+
+                <div class="text-box">
+                    <div class="text-box1">
+                        <div class="text-left">
+                            <a href="#">
+                                <img src="img/tv8.png" alt="">
+                            </a>
+                        </div>
+                        <div class="text-right">
+                            <h4 class="text-top">PC端</h4>
+                            <p>
+                                熟练使用 Html5 Css3 JavaScript，能够合理完成web端或者移动端页面的编写和维护，<br>
+                                思路清晰，结构完整，易于维护和持久化开发，能处理主流浏览器兼容问题。熟练使用原生js, 了解js面向对象原理，闭包以及原型结构，能够合理利用面向对象以及模块化开发,并且能适当完成框架封装。熟练使用 jQuery，并能完成相关项目。<br>
+                                熟悉animation fullpage jquery-ui template lazyload jQeasing masonry等实用插件的应用,轮播图，tab栏，瀑布流，延迟加载，全屏滚动等等常用功能的实现<br>
+                                掌握 Ajax交互原理，根据后台接口能够合理完成前后台交互，数据的增删改查
+
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="text-box1">
+                        <div class="text-left">
+                            <a href="#">
+                                <img src="img/apple6.png" alt="">
+                            </a>
+                        </div>
+                        <div class="text-right">
+                            <h4 class="text-top">手机端</h4>
+                            <p>
+                                熟练使用zepto.js，Frozen ui，Amaze ui等移动框架进行移动页面的开发<br>
+                                掌握 移动端编程，会基于流式布局以及 响应式布局 开发基于移动端的页面。<br>
+                                熟练使用Bootstrap 框架以及轻量级框架 zepto 的使用。
+
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="text-box1">
+                        <div class="text-left">
+                            <a href="#">
+                                <img src="img/baterry10.png" alt="">
+                            </a>
+                        </div>
+                        <div class="text-right">
+                            <h4 class="text-top">其他</h4>
+                            <p>
+                                掌握 angularJS 框架原理，可以完成无需刷新的单页面应用<br>
+                                了解Node.js 的工作原理会使用npm、bower环境
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="s4">
+            <div class="scene">
+                <ul>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                   <li></li>
+                </ul>
+
+                <div class="next">&gt</div>
+                <div class="prev">&lt</div>
+            </div>    
+        </div>
+        
+    </div>
+    
+    <div class="section">5</div>
+    <!-- 分屏结束 -->
+
+</div>
+<!-- 全屏 结束-->
+
+</body>
+<script src="jquery-3.2.1.js"></script>
+<script src="jquery.fullPage.js"></script>
+<script>
+	$("#container").fullpage({
+		verticalCentered: false,
+		anchors: ["p1", "p2", "p3", "p4", "p5"],
+		sectionsColor: ["#ccc", "yellow", "red", "#f88", "#99f"],
+		scrollingSpeed: 600,
+		menu:"#menu",
+		keyboardScrolling:true,
+		continuousVertical: false,
+		scrollOverflow:false,
+		fixedElements:"#menu",
+		
+        afterLoad:function(anchor,index){
+            if(index===2){
+             $(".two-left").css("transform","translateX(0)");
+             $(".two-right").css("transform","translateX(0)");
+            }
+        },
+        onLeave:function(index){
+            if(index===2){
+                $(".two-left").css("transform","translateX(-1000px)");
+                $(".two-right").css("transform","translateX(1000px)");
+            }
+        }
+        
+	})
+</script>
+</html>
